@@ -1,0 +1,12 @@
+﻿Metric,Value,Definition
+Total Sales,45820587.349999994,Sum of known sales; source currency is unspecified.
+Total Profit,5468363.42,Sum of known profit values; missing profit is not treated as zero.
+Total Orders,1498.0,"Distinct, nonblank Order IDs; repeated IDs can represent valid line items."
+Units Sold,4450.0,Sum of known quantities; review the data-quality report for missing or nonpositive quantities.
+Total Customers,288.0,Distinct customers with an identified name; Unknown is excluded.
+Average Order Value,30587.842022696925,Total known sales divided by distinct orders.
+Profit Margin,0.11934293592157545,Total known profit divided by total known sales; undefined when sales are zero or profit is unknown.
+Rows with invalid order dates,4.0,Retained in total sales but excluded from time-series analysis.
+Rows with missing or invalid sales,1.0,"Missing amounts remain unknown, not zero."
+Rows with missing or invalid profit,1.0,"Missing amounts remain unknown, not zero."
+Duplicate rows removed,2.0,Normalized identical rows removed; distinct order line items retained.
