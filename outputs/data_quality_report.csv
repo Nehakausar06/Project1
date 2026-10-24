@@ -1,0 +1,21 @@
+﻿Metric,Value,Details
+Source data rows,1500,Number of records in the untouched source worksheet.
+Exact duplicate rows in source,2,Rows identical across all original columns.
+Duplicate rows removed,2,Identical rows removed after normalizing text and numeric values. Distinct line items with the same Order ID are retained.
+Rows removed without an order ID,0,An order ID is required to count orders without counting unknown IDs as real orders.
+Cleaned data rows,1498,Rows remaining after documented deduplication and removal of records without an order ID.
+Rows with missing or invalid order dates,4,Retained in sales totals; excluded from time-series charts and date-based trend comparisons.
+Rows with missing or invalid sales,1,Retained with an unknown Sales value; sales totals skip unknown amounts rather than treating them as zero.
+Rows with missing or invalid profit,1,Retained with an unknown Profit value; profit totals skip unknown amounts rather than treating them as zero.
+Rows with missing or invalid quantity,1,Retained with an unknown Quantity; units-sold totals include only reported quantities.
+Rows with negative sales,1,"Retained unchanged; confirm whether negative sales represent returns, credits, or source errors."
+Rows with zero or negative quantity,2,Retained unchanged; confirm whether zero or negative quantities are intentional returns or source errors.
+Source rows missing Order ID,0,Count in the original worksheet before cleaning.
+Source rows missing Order Date,2,Count in the original worksheet before cleaning.
+Source rows missing Customer,2,Count in the original worksheet before cleaning.
+Source rows missing Product,1,Count in the original worksheet before cleaning.
+Source rows missing Category,1,Count in the original worksheet before cleaning.
+Source rows missing Region,1,Count in the original worksheet before cleaning.
+Source rows missing Quantity,1,Count in the original worksheet before cleaning.
+Source rows missing Sales,1,Count in the original worksheet before cleaning.
+Source rows missing Profit,1,Count in the original worksheet before cleaning.
