@@ -1,0 +1,16 @@
+{
+  "name": "CodSoft Sales Analysis",
+  "dataColors": [
+    "#187B86",
+    "#F0AB58",
+    "#17324D",
+    "#53A98B",
+    "#DA7562",
+    "#6093C5",
+    "#9B88BC",
+    "#88AA68"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#17324D",
+  "tableAccent": "#187B86"
+}

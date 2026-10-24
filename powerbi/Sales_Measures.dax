@@ -1,0 +1,79 @@
+Total Sales =
+SUM ( 'Sales'[Sales] )
+
+Total Profit =
+SUM ( 'Sales'[Profit] )
+
+Total Orders =
+DISTINCTCOUNT ( 'Sales'[Order ID] )
+
+Units Sold =
+SUM ( 'Sales'[Quantity] )
+
+Total Customers =
+CALCULATE (
+    DISTINCTCOUNT ( 'Sales'[Customer] ),
+    'Sales'[Customer] <> "Unknown"
+)
+
+Average Order Value =
+DIVIDE ( [Total Sales], [Total Orders] )
+
+Profit Margin =
+DIVIDE ( [Total Profit], [Total Sales] )
+
+Previous Month Sales =
+CALCULATE (
+    [Total Sales],
+    DATEADD ( 'Calendar'[Date], -1, MONTH )
+)
+
+Month-over-Month Growth % =
+DIVIDE (
+    [Total Sales] - [Previous Month Sales],
+    [Previous Month Sales]
+)
+
+Sales Previous Year =
+CALCULATE (
+    [Total Sales],
+    SAMEPERIODLASTYEAR ( 'Calendar'[Date] )
+)
+
+Year-over-Year Growth % =
+DIVIDE (
+    [Total Sales] - [Sales Previous Year],
+    [Sales Previous Year]
+)
+
+Repeat Customers =
+VAR CustomerOrderCounts =
+    ADDCOLUMNS (
+        FILTER (
+            VALUES ( 'Sales'[Customer] ),
+            'Sales'[Customer] <> "Unknown"
+        ),
+        "Distinct Orders", CALCULATE ( DISTINCTCOUNT ( 'Sales'[Order ID] ) )
+    )
+RETURN
+    COUNTROWS (
+        FILTER ( CustomerOrderCounts, [Distinct Orders] > 1 )
+    )
+
+Sales with Missing Dates =
+CALCULATE (
+    [Total Sales],
+    ISBLANK ( 'Sales'[Order Date] )
+)
+
+Rows with Missing Sales =
+CALCULATE (
+    COUNTROWS ( 'Sales' ),
+    ISBLANK ( 'Sales'[Sales] )
+)
+
+Rows with Missing Profit =
+CALCULATE (
+    COUNTROWS ( 'Sales' ),
+    ISBLANK ( 'Sales'[Profit] )
+)

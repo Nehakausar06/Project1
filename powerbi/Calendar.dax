@@ -1,0 +1,24 @@
+Calendar =
+VAR DatedRows =
+    FILTER (
+        SELECTCOLUMNS (
+            'Sales',
+            "CalendarDate", 'Sales'[Order Date]
+        ),
+        NOT ISBLANK ( [CalendarDate] )
+    )
+RETURN
+    ADDCOLUMNS (
+        CALENDAR (
+            MINX ( DatedRows, [CalendarDate] ),
+            MAXX ( DatedRows, [CalendarDate] )
+        ),
+        "Year", YEAR ( [Date] ),
+        "Quarter Number", QUARTER ( [Date] ),
+        "Quarter", "Q" & FORMAT ( QUARTER ( [Date] ), "0" ),
+        "Year-Quarter", FORMAT ( [Date], "YYYY" ) & " Q" & FORMAT ( QUARTER ( [Date] ), "0" ),
+        "Month Number", MONTH ( [Date] ),
+        "Month", FORMAT ( [Date], "MMMM" ),
+        "Year-Month", FORMAT ( [Date], "YYYY-MM" ),
+        "Year-Month Sort", YEAR ( [Date] ) * 100 + MONTH ( [Date] )
+    )
